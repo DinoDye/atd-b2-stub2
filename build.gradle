@@ -30,7 +30,8 @@ task gitInit(type:Exec) {
 
 task initB2 << {
 
-    def console = System.console()
+    // def console = System.console()
+    Console console = System.console()
     if (!console) {
         logger.error("Can't get console!")
         return
