@@ -1,11 +1,14 @@
-apply plugin: 'java'
-apply plugin: 'war'
+apply plugin: "java"
+apply plugin: "war"
+apply plugin: "maven"
+apply plugin: "eclipse"
+apply plugin: "idea"
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 task wrapper(type: Wrapper) {
-    gradleVersion = "2.6"
+    gradleVersion = "2.9"
 }
 
 if (isBuildingBlock()) {
@@ -59,7 +62,7 @@ ant.taskdef(name: 'b2deploy', classname: 'org.oscelot.ant.B2DeployTask', classpa
 task deployb2(dependsOn: 'war') << {
     println "Deploying \"" + war.archivePath + "\""
     ant.b2deploy(localfilepath: war.archivePath,
-    host: 'localhost:9876',
+    host: 'http://localhost:9876',
     clean: 'true',
     courseorgavailable: 'true')
 }
